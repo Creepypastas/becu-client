@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<!--
+
+ , __                                   __
+/|/  \                                 /  \
+ | __/ ,_    __           ,   _   ,_  | __ |          _   , _|_
+ |   \/  |  /  \_|  |  |_/ \_|/  /  | |/  \|  |   |  |/  / \_|
+ |(__/   |_/\__/  \/ \/   \/ |__/   |_/\__/\_/ \_/|_/|__/ \/ |_/
+
+Mozilla presents an HTML5 mini-MMORPG by Little Workshop http://www.littleworkshop.fr
+
+* Client libraries used: RequireJS, Underscore.js, jQuery, Modernizr
+* Server-side: Node.js, Socket.io
+* Should work in latest versions of Firefox, Chrome, Safari, Opera, Safari Mobile and Firefox for Android
+
+ -->
+<html lang="es">
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <link rel="icon" type="image/png" href="img/common/favicon.png">
+        <meta property="og:title" content="BrowserQuest">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="http://bq.creepypastas.com/">
+        <meta property="og:image" content="http://browserquest.mozilla.org/img/common/promo-title.jpg">
+        <meta property="og:site_name" content="BrowserQuest">
+        <meta property="og:description" content="Juega Creepypastas BQ, un juego HTML5 multijugador, basado en el demo de Mozilla">
+        <link rel="stylesheet" href="css/main.css" type="text/css">
+        <link rel="stylesheet" href="css/achievements.css" type="text/css">
+
+        <link href="img/common/apple-touch-icon-57x57.png" rel="apple-touch-icon-precomposed" sizes="57x57">
+        <link href="img/common/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72">
+        <link href="img/common/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114">
+        <link href="img/common/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144">
+
+        <link href="img/common/apple-touch-startup-image-320x460.png" rel="apple-touch-startup-image" media="(device-width: 320px)">
+        <link href="img/common/apple-touch-startup-image-640x920.png" rel="apple-touch-startup-image" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)">
+        <link href="img/common/apple-touch-startup-image-768x1004.png" rel="apple-touch-startup-image" media="(device-width: 768px) and (orientation: portrait)">
+        <link href="img/common/apple-touch-startup-image-748x1024.png" rel="apple-touch-startup-image" media="(device-width: 768px) and (orientation: landscape)">
+        <link href="img/common/apple-touch-startup-image-1536x2008.png" rel="apple-touch-startup-image" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)">
+        <link href="img/common/apple-touch-startup-image-1496x2048.png" rel="apple-touch-startup-image" media="(device-width: 1536px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)">
+
+        <script src="js/lib/modernizr.js" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+                <link rel="stylesheet" href="css/ie.css" type="text/css">
+                <script src="js/lib/css3-mediaqueries.js" type="text/javascript"></script>
+                <script type="text/javascript">
+                document.getElementById('parchment').className = ('error');
+                </script>
+        <![endif]-->
+        <script src="js/detect.js" type="text/javascript"></script>
+        <title>BrowserQuest</title>
+	</head>
+    <!--[if lt IE 9]>
+	<body class="intro upscaled">
+    <![endif]-->
+    <!--a href="https://github.com/browserquest/BrowserQuest"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a-->
+	<body class="intro">
+	    <noscript>
+	       <div class="alert">
+	           Es necesario que actives JavaScript para jugar BrowserQuest.
+	       </div>
+	    </noscript>
+	    <!--a id="moztab" class="clickable" target="_blank" href="http://www.mozilla.org/"></a-->
+
+			<!--uglystuf-->
+			<style>
+				#becu-arriba{
+					width: 100%;
+					z-index: 666666;
+					position: fixed;
+					top: 0;
+					left: 0;
+					overflow: hidden;
+				}
+				.ade{
+					width: 100%;
+					max-width: 728px;
+					margin: auto;
+				}
+				@media screen and (max-width: 727px) {
+					#becu-arriba {
+						height: 60px;
+					}
+				}
+				@media screen and (min-width: 728px) {
+					#becu-arriba {
+						height: 90px;
+					}
+				}
+			</style>
+			<div id="becu-arriba">
+				<div class="ade">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- becu-arriba -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-4052984890763114"
+					     data-ad-slot="9215498056"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
+
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-8628479-10', 'auto');
+			  ga('send', 'pageview');
+
+			</script>
+			<!--//uglistuf-->
+
+
+	    <div id="intro">
+	        <h1 id="logo">
+	           <span id="logosparks">
+
+	           </span>
+	        </h1>
+	        <article id="portrait">
+	            <p>
+	               Por favor gira tu dispositivo al modo horizontal
+	            </p>
+	            <div id="tilt"></div>
+	        </article>
+	        <section id="parchment" class="createcharacter">
+	            <div class="parchment-left"></div>
+	            <div class="parchment-middle">
+                    <article id="createcharacter">
+          	           <h1>
+          	               <span class="left-ornament"></span>
+          	               Crear un personaje nuevo
+          	               <span class="right-ornament"></span>
+                         </h1>
+                         <form action="none" method="get" accept-charset="utf-8">
+                             <input type="text" id="nameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="12">
+                             <input type="password" id="pwinput" class="stroke" name="player-pw" placeholder="Password" maxlength="15">
+                             <input type="password" id="pwinput2" class="stroke" name="player-pw2" placeholder="Confirm Password" maxlength="15">
+                             <input type="email" id="emailinput" class="stroke" name="player-email" placeholder="Email address" maxlength="48">
+                         </form>
+                         <div class="play">
+                           <span class="link">Crear</span>
+                         </div>
+                         <div class="validation-summary"></div>
+                    </article>
+                    <article id="loadcharacter">
+          	           <h1>
+          	               <span class="left-ornament"></span>
+          	               BrowserQuest
+          	               <span class="right-ornament"></span>
+                         </h1>
+                         <form action="none" method="get" accept-charset="utf-8">
+                             <input type="text" id="loginnameinput" class="stroke" name="player-name" placeholder="Character Name" maxlength="12" autofocus>
+                             <input type="password" id="loginpwinput" class="stroke" name="player-loginpw" placeholder="Password" maxlength="15">
+                         </form>
+                         <div class="play">
+                           <span class="link">Entrar</span>
+                           <img src="img/common/spinner2.gif">
+                         </div>
+                         <div class="validation-summary"></div>
+                         <div id="create-new">
+                            <span class="link">Nuevo jugador</span>
+                         </div>
+                    </article>
+                    <article id="confirmation">
+          	           <h1>
+          	               <span class="left-ornament"></span>
+													 Para jugar debes estar dispuesto a entregarnos tu alma.<br>
+                           ¡La cuidaremos mucho!<br><br>
+          	               <span class="right-ornament"></span>
+                         </h1>
+                         <div id="continue">
+                         <span class="link">Continuar</span>
+                         </div>
+                         <div id="cancel">
+                            <span class="link">Cancelar</span>
+                         </div>
+                    </article>
+    	            <article id="credits">
+        	            <h1>
+         	               <span class="left-ornament"></span>
+         	               <span class="title">
+         	                   Juego original hecho para Mozilla por <a target="_blank" class="stroke clickable" href="http://www.littleworkshop.fr/">Little Workshop</a>
+         	               </span>
+         	               <span class="right-ornament"></span>
+                        </h1>
+                        <div id="authors">
+                            <div id="guillaume">
+                                <div class="avatar"></div>
+                                Arte por
+                                <a class="stroke clickable" target="_blank" href="http://twitter.com/glecollinet">Guillaume Lecollinet</a>
+                            </div>
+														<div id="franck">
+                                <div class="avatar"></div>
+                                Código por
+                                <a class="stroke clickable" target="_blank" href="http://twitter.com/whatthefranck">Franck Lecollinet</a>
+                            </div>
+														<div id="creepypastas-av">
+                                <div class="avatar"></div>
+                                Ligeras modificaciones para
+                                <a class="stroke clickable" target="_blank" href="https://twitter.com/creepypastas">Creepypastas</a>
+                            </div>
+                        </div>
+                        <div id="seb">
+
+                            <span id="note"></span>
+                            Sonidos por <a class="clickable" target="_blank" href="http://soundcloud.com/gyrowolf">Terrel O'Brien</a>, <a class="clickable" target="_blank" href="http://blog.dayjo.org">Joel Day</a>, <a class="clickable" target="_blank" href="http://www.dantilden.com">Dan Tilden</a>, &amp; <a target="_blank" class="clickable" href="http://soundcloud.com/aaron-anderson-11">Aaron Krogh</a>
+
+                        </div>
+	                    <div id="close-credits">
+	                        <span>- clic en cualquier sitio para cerrar -</span>
+                        </div>
+    	            </article>
+    	            <article id="about">
+        	            <h1>
+         	               <span class="left-ornament"></span>
+         	               <span class="title">
+         	                   ¿Qué es BrowserQuest?
+         	               </span>
+         	               <span class="right-ornament"></span>
+                        </h1>
+                        <p id="game-desc">
+                            BrowserQuest es un juego multijugador que te invita a explorar un
+                            mundo de aventuras desde tu navegador.
+                        </p>
+                        <div class="left">
+                            <div class="img"></div>
+                            <p>
+                                El juego está construido en HTML5 y WebSockets, tecnologías que permiten tener juegos en tiempo real en la Web.
+                            </p>
+                            <span class="link">
+                                <span class="ext-link"></span>
+                                <a target="_blank" class="clickable" href="http://hacks.mozilla.org/2012/03/browserquest/">Aprender más</a> sobre estas tecnologías
+                            </span>
+                        </div>
+                        <div class="right">
+                            <div class="img"></div>
+                            <p>
+                                BrowserQuest está disponible para Firefox, Chrome, Safari así como dispositivos iOS y Firefox para Android.
+                            </p>
+                            <span class="link">
+                                <span class="ext-link"></span>
+                                <a target="_blank" class="clickable" href="http://github.com/browserquest/BrowserQuest">Descarga el código fuente</a> en Github
+                            </span>
+                        </div>
+                      <div id="close-about">
+                          <span>- clic en cualquier sitio para cerrar -</span>
+                        </div>
+                  </article>
+    	            <article id="death">
+                        <p>Has muerto...</p>
+    					<div id="respawn" class="button"></div>
+    	            </article>
+                    <article id="error">
+          	           <h1>
+          	               <span class="left-ornament"></span>
+          	               ¡Tu navegador no es poderoso!
+          	               <span class="right-ornament"></span>
+                         </h1>
+                         <p>
+													 	 Lamentablemente, tu navegador no soporta WebSockets.<br>
+														 Te recomendamos usar la versión más nueva de <strong>Firefox</strong>, Chrome o Safari.
+                         </p>
+                    </article>
+                    <article id="legal">
+          	           <h1>
+          	               <span class="left-ornament"></span>
+          	               Privacidad
+          	               <span class="right-ornament"></span>
+                         </h1>
+                         <p>
+                             BrowserQuest almacena el nombre de tu personaje, logros del juego y atuendo en tu navegador y no los envía a Mozilla ni a Creepypastas. Recolectamos información del registro del servidor (como direcciones IP), así como información de analítica web. Manejamos esta información de acuerdo a nuestra <a class="clickable" target="_blank" href="http://creepypastas.com/politica-de-privacidad/">política de privacidad</a>.
+                         </p>
+ 	                    <div id="close-legal">
+ 	                        <span>- clic en cualquier sitio para cerrar -</span>
+                         </div>
+                    </article>
+	            </div>
+	            <div class="parchment-right"></div>
+	        </section>
+	    </div>
+
+		<div id="container">
+		    <div id="canvasborder">
+		        <article id="instructions" class="clickable">
+		            <div class="close"></div>
+		            <h1>
+     	               <span class="left-ornament"></span>
+     	               Cómo jugar
+     	               <span class="right-ornament"></span>
+	                </h1>
+	                <ul>
+	                   <li><span class="icon"></span>Clic primario o toque para mover, atacar y tomar objetos. Mantén presionado SHIFT para atacar a otros jugadores.</li>
+	                   <li><span class="icon"></span>Presiona ENTER para conversar.</li>
+	                   <li><span class="icon"></span>Tu personaje es guardado automáticamente mientras juegas. La línea azul a la derecha es tu barra de experiencia.</li>
+	                </ul>
+	                    <p>- clic en cualquier sitio para cerrar -</p>
+		        </article>
+		        <article id="achievements" class="page1 clickable">
+		            <div class="close"></div>
+		            <div id="achievements-wrapper">
+		                <div id="lists">
+        		        </div>
+    		        </div>
+    		        <div id="achievements-count" class="stroke">
+    		            Completado
+    		            <div>
+    		                <span id="unlocked-achievements">0</span>
+    		                /
+    		                <span id="total-achievements"></span>
+    		            </div>
+                    Cerrar
+    		        </div>
+		            <nav class="clickable">
+		                <div id="previous"></div>
+		                <div id="next"></div>
+		            </nav>
+		        </article>
+    			<div id="canvas">
+    				<canvas id="background"></canvas>
+    				<canvas id="entities"></canvas>
+    				<canvas id="foreground" class="clickable"></canvas>
+    			</div>
+    			<div id="bubbles"></div>
+     			<div id="expbar"></div>
+     			<div id="textWindow"></div>
+    			<div id="inspector">
+                    <div class="headshot"><div> </div></div>
+                    <div class="details">
+                        <div class="name"></div>
+                        <div class="level"></div>
+                        <div class="health"></div>
+                    </div>
+                </div>
+                <div id="dropDialog">
+                    <div id="dropTitle">Input drop count.</div>
+                    <div align="center">
+                        <input type="text" id="dropCount" size="6" maxlength="6">
+                        <span id="dropAccept">&nbsp;Acceptar&nbsp;</span>
+                        <span id="dropCancel">&nbsp;Cancelar&nbsp;</span>
+                    </div>
+                </div>
+ 			<div id="achievement-notification">
+    			    <div class="coin">
+    			        <div id="coinsparks"></div>
+    			    </div>
+    			    <div id="achievement-info">
+        			    <div class="title">¡Nuevo logro!</div>
+        			    <div class="name"></div>
+    			    </div>
+    			</div>
+    			<div id="bar-container">
+					<div id="healthbar">
+					</div>
+					<div id="hitpoints">
+					</div>
+					<div id="weapon"></div>
+					<div id="armor"></div>
+					<div id="notifications">
+					    <div>
+					       <span id="message1"></span>
+					       <span id="message2"></span>
+					    </div>
+					</div>
+                    <div id="playercount" class="clickable">
+                        <span class="count">0</span> <span>jugadores</span>
+                    </div>
+                    <div id="barbuttons">
+                        <div id="chatbutton" class="barbutton clickable"></div>
+                        <div id="achievementsbutton" class="barbutton clickable"></div>
+                        <div id="helpbutton" class="barbutton clickable"></div>
+                        <div id="mutebutton" class="barbutton clickable active"></div>
+                    </div>
+    			</div>
+				<div id="chatbox">
+				    <form action="none" method="get" accept-charset="utf-8">
+					    <input id="chatinput" class="gp" type="text" maxlength="60">
+				    </form>
+				</div>
+				<!-- TODO div id="dialogbox">
+					Right now this happens in the footer.
+				</div to accept members for instance… -->
+                <div id="population">
+                    <div id="instance-population" class="">
+                        <span>0</span> <span>jugadores</span> en tu plano
+                    </div>
+                    <div id="guild-population" class="">
+						<span>0</span> <span>jugadores</span> en «&nbsp;<span id="guild-name"></span>&nbsp;»
+					</div>
+                    <div id="world-population" class="">
+                        <span>0</span> <span>jugadores</span> en total
+                    </div>
+                </div>
+		    </div>
+		</div>
+		<footer>
+		    <!--div id="sharing" class="clickable">
+		      Share this on
+              <a href="http://twitter.com/share?url=http%3A%2F%2Fbrowserquest.mozilla.org&amp;text=Mozilla%27s%20BrowserQuest%3A%20HTML5%20massively%20multiplayer%20adventure%20game%20%23demo%20%23websockets&amp;related=glecollinet:Creators%20of%20BrowserQuest%2Cwhatthefranck" class="twitter"></a>
+              <a href="http://www.facebook.com/share.php?u=http://browserquest.mozilla.org/" class="facebook"></a>
+		    </div-->
+		    <div id="privacy-link" class="clickable">
+		      <!--span class="dash">&ndash;</span--> <span id="toggle-legal">Privacidad</span>
+		    </div>
+		    <!--div id="legal-link" class="clickable">
+		      <span class="dash">&ndash;</span> <a class="clickable" target="_blank" href="http://www.mozilla.org/en-US/about/legal.html">Legal notices</a>
+		    </div-->
+		    <div id="credits-link" class="clickable">
+		      <span class="dash">&ndash;</span> <span id="toggle-credits">Créditos</span>
+		    </div>
+		</footer>
+
+		<ul id="page-tmpl" class="clickable" style="display:none">
+        </ul>
+        <ul>
+            <li id="achievement-tmpl" style="display:none">
+                <div class="coin"></div>
+                <span class="achievement-name">???</span>
+                <span class="achievement-description">???</span>
+                <div class="achievement-sharing">
+                  <a href="" class="twitter"></a>
+                </div>
+            </li>
+        </ul>
+
+        <img src="img/common/thingy.png" alt="" class="preload">
+
+        <div id="resize-check"></div>
+
+        <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
+        <script type="text/javascript">
+            var ctx = document.querySelector('canvas').getContext('2d'),
+                parchment = document.getElementById("parchment");
+
+            if(!Detect.supportsWebSocket()) {
+                parchment.className = "error";
+            }
+
+            if(ctx.mozImageSmoothingEnabled === undefined) {
+                document.querySelector('body').className += ' upscaled';
+            }
+
+            parchment.className = "loadcharacter";
+        </script>
+
+        <script src="js/lib/log.js"></script>
+        <script>
+                var require = { waitSeconds: 60 };
+        </script>
+        <script data-main="js/home" src="js/lib/require-jquery.js"></script>
+	</body>
+</html>
