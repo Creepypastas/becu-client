@@ -8,7 +8,7 @@ define(['mob', 'timer'], function(Mob, Timer) {
                 this.moveSpeed = 350;
                 this.idleSpeed = 700;
                 this.shadowOffsetY = -2;
-                this.isAggressive = false;
+                this.isAggressive = true;
             }
         }),
 
@@ -31,7 +31,7 @@ define(['mob', 'timer'], function(Mob, Timer) {
                 this.idleSpeed = 800;
                 this.walkSpeed = 200;
                 this.shadowOffsetY = 1;
-                this.setAttackRate(1300);
+                this.setAttackRate(3900);
             }
         }),
 
@@ -43,7 +43,7 @@ define(['mob', 'timer'], function(Mob, Timer) {
                 this.idleSpeed = 200;
                 this.walkSpeed = 200;
                 this.shadowOffsetY = 1;
-                this.setAttackRate(900);
+                this.setAttackRate(6900);
             }
         }),
 
@@ -54,7 +54,7 @@ define(['mob', 'timer'], function(Mob, Timer) {
                 this.moveSpeed = 220;
                 this.walkSpeed = 100;
                 this.idleSpeed = 450;
-                this.setAttackRate(800);
+                this.setAttackRate(9800);
                 this.aggroRange = 3;
             },
 
@@ -73,7 +73,7 @@ define(['mob', 'timer'], function(Mob, Timer) {
                 this.moveSpeed = 150;
                 this.atkSpeed = 60;
                 this.idleSpeed = 600;
-                this.setAttackRate(700);
+                this.setAttackRate(2700);
             }
         }),
 
@@ -122,7 +122,7 @@ define(['mob', 'timer'], function(Mob, Timer) {
                 this.atkSpeed = 90;
                 this.idleSpeed = 90;
                 this.walkSpeed = 85;
-                this.isAggressive = false;
+                this.isAggressive = true;
             }
         }),
 
@@ -141,7 +141,7 @@ define(['mob', 'timer'], function(Mob, Timer) {
                 this.moveSpeed = 300;
                 this.atkSpeed = 50;
                 this.idleSpeed = 400;
-                this.atkRate = 2000;
+                this.atkRate = 12000;
                 this.attackCooldown = new Timer(this.atkRate);
                 this.aggroRange = 3;
             },

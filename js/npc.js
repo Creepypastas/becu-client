@@ -23,12 +23,9 @@ define(['character'], function(Character) {
         ],
 
         "villagegirl": [
-            "Hi there, adventurer!",
-            "How do you like this game?",
-            "It's all happening in a single web page! Isn't it crazy?",
-            "It's all made possible thanks to WebSockets.",
-            "I don't know much about it, after all I'm just a program.",
-            'Why don&#x27;t you read this <a target="_blank" href="http://hacks.mozilla.org/2012/03/browserquest/">blog post</a> and learn all about it?'
+            "¡Auxilio, auxilio!",
+            "Por favor",
+            "acaba con las ratas"
         ],
 
         "villager": [
@@ -42,10 +39,10 @@ define(['character'], function(Character) {
         ],
 
         "agent": [
-            "Do not try to bend the sword",
-            "That's impossible",
-            "Instead, only try to realize the truth...",
-            "There is no sword."
+            "Investigo el caso de las chicas",
+            "que dicen haber visto",
+            "a slenderman en el bosque...",
+            "¡Estaré vigilándote!"
         ],
 
         "rick": [
